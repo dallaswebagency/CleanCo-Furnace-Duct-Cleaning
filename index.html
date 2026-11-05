@@ -72,13 +72,13 @@ nav a:hover::after{width:100%}
 /* hero */
 .hero{position:relative;background:var(--navy);color:#fff;overflow:hidden}
 .hero .bg{position:absolute;inset:0;--img:url(images/hero.jpg)}
-.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,42,79,.97) 0%,rgba(6,42,79,.9) 38%,rgba(6,42,79,.35) 70%,rgba(6,42,79,.15) 100%)}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,42,79,.95) 0%,rgba(6,42,79,0) 28%),linear-gradient(90deg,rgba(6,42,79,.97) 0%,rgba(6,42,79,.9) 36%,rgba(6,42,79,.3) 62%,rgba(6,42,79,.05) 100%)}
 .flow{position:absolute;inset:0;pointer-events:none;opacity:.55}
 .flow path{fill:none;stroke:url(#fg);stroke-width:1.4;stroke-dasharray:6 14;animation:dash 7s linear infinite}
 .flow path:nth-child(2n){animation-duration:10s;stroke-width:1}
 .flow path:nth-child(3n){animation-duration:13s}
 @keyframes dash{to{stroke-dashoffset:-400}}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;padding:110px 0 0;min-height:640px}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,640px) 1fr;gap:40px;padding:110px 0 0;min-height:640px}
 .hero h1{font-size:clamp(2.7rem,5.6vw,4.9rem);font-weight:700;margin:18px 0 22px}
 .hero h1 em{font-style:normal;color:#7fd0ff;position:relative}
 .hero h1 .mag{color:#ff7fbf}
@@ -99,6 +99,13 @@ nav a:hover::after{width:100%}
 .pricecard .row strong{font-family:"Familjen Grotesk",sans-serif;font-size:1.5rem;color:var(--magenta)}
 .pricecard a.more{display:inline-flex;margin-top:8px;font-weight:700;font-size:.88rem;color:var(--blue)}
 
+.pstrip{display:inline-flex;align-items:stretch;margin-top:34px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:16px;backdrop-filter:blur(6px);overflow:hidden;transition:background .2s}
+.pstrip:hover{background:rgba(255,255,255,.14)}
+.pstrip .lab{writing-mode:vertical-rl;transform:rotate(180deg);background:var(--magenta);font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:12px 7px;text-align:center}
+.pstrip .it{padding:14px 22px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.14)}
+.pstrip small{font-size:.78rem;color:#a9c1da;font-weight:600}
+.pstrip b{font-family:"Familjen Grotesk",sans-serif;font-size:1.55rem;color:#ff9acb;line-height:1.1}
+.pstrip .go{display:grid;place-items:center;padding:0 18px;font-size:1.2rem;color:#7fd0ff}
 /* ribbon */
 .ribbon{background:var(--magenta);color:#fff;overflow:hidden;white-space:nowrap}
 .ribbon .track{display:inline-flex;gap:0;animation:mq 34s linear infinite;padding:16px 0}
@@ -267,7 +274,8 @@ footer a:hover{color:#fff}
   .burger{display:block}
   .hcall .num{display:none}
   .hero .wrap{grid-template-columns:1fr;padding-top:80px}
-  .pricecard{justify-self:start;border-radius:22px;margin:30px 0 0}
+  .hero .bg{background-position:68% center}
+  .hero .bg::after{background:linear-gradient(180deg,rgba(6,42,79,.93) 0%,rgba(6,42,79,.86) 60%,rgba(6,42,79,.95) 100%)}
   .hero-foot{grid-template-columns:1fr 1fr;margin-top:50px}
   .hero-foot div:nth-child(2){border-right:0}
   .hero-foot div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.14)}
@@ -295,6 +303,7 @@ footer a:hover{color:#fff}
   .stat.kid{grid-template-columns:1fr}
   .qs{grid-template-columns:1fr}
   .step .body{padding:28px 24px 32px}
+  .pstrip .it{padding:12px 14px}.pstrip b{font-size:1.25rem}.pstrip .go{display:none}
   .ticket{grid-template-columns:1fr}
   .ticket .r{border-left:0;border-top:2px dashed var(--line);flex-direction:row;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .ticket .r::before,.ticket .r::after{display:none}
@@ -386,13 +395,12 @@ footer a:hover{color:#fff}
         <a href="tel:4032022177" class="btn btn-mag">Call 403-202-2177</a>
         <a href="#contact" class="btn btn-ghost">Request a booking &rarr;</a>
       </div>
-    </div>
-    <div class="pricecard reveal">
-      <small>Latest specials</small>
-      <h3>HI-TECH cleaning packages</h3>
-      <div class="row"><span>Power Whip Package</span><strong>$119.95</strong></div>
-      <div class="row"><span>Rotary Brush &amp; Power Whip</span><strong>$159.95</strong></div>
-      <a class="more" href="#specials">See what's included &rarr;</a>
+      <a class="pstrip" href="#specials">
+        <span class="lab">Latest specials</span>
+        <span class="it"><small>Power Whip Package</small><b>$119.95</b></span>
+        <span class="it"><small>Rotary Brush &amp; Power Whip</small><b>$159.95</b></span>
+        <span class="go">&rarr;</span>
+      </a>
     </div>
     <div class="hero-foot">
       <div><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><p><b>BBB Accredited</b><span>A+ rating</span></p></div>
